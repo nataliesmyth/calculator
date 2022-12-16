@@ -26,7 +26,13 @@ class Calculator {
     }
     
     chooseOperation(operation) {
-        
+        if (this.currentOperand === '') return;
+        if (this.previousOperand !== '') {
+            this.compute()
+        }
+        this.operation = operation;
+        this.previousOperand = this.currentOperand;
+        this.currentOperand = '';
     }
     
     compute() {
@@ -34,7 +40,8 @@ class Calculator {
     }
     
     updateDisplay() {
-        this.currentOperandTextEl.innerText = this.currentOperand
+        this.currentOperandTextEl.innerText = this.currentOperand;
+        this.previousOperandTextEl.innerText = this.previousOperand;
     }
 }
 // first step: select all of our buttons
@@ -56,6 +63,15 @@ const calculator = new Calculator(previousOperandTextEl, currentOperandTextEl);
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.appendNumber(button.innerText);
+        calculator.updateDisplay();
+    })
+})
+
+// select operation buttons
+
+operationButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        calculator.chooseOperation(button.innerText);
         calculator.updateDisplay();
     })
 })
