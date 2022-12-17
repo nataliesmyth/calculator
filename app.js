@@ -61,10 +61,16 @@ class Calculator {
         this.operation = undefined;
         this.previousOperand = '';
     }
+
+    getDisplayNumber(number) {
+        return number
+    }
     
     updateDisplay() {
-        this.currentOperandTextEl.innerText = this.currentOperand;
-        this.previousOperandTextEl.innerText = this.previousOperand;
+        this.currentOperandTextEl.innerText = this.getDisplayNumber(this.currentOperand);
+        if (this.operation != null) {
+            this.previousOperandTextEl.innerText = `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
+        }
     }
 }
 // first step: select all of our buttons
@@ -101,7 +107,7 @@ operationButtons.forEach(button => {
 
 equalsButton.addEventListener('click', button => {
     calculator.compute();
-    calculator.updateDisplay;
+    calculator.updateDisplay();
 });
 
 allClearButton.addEventListener('click', button => {
