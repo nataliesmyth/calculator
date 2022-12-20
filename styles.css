@@ -11,7 +11,8 @@ body {
 }
 
 .calc {
-    background-color: red;
+    background: linear-gradient(45deg, red, blue);
+    /* background-color: red; */
     display: grid;
     justify-content: center;
     align-content: center;
